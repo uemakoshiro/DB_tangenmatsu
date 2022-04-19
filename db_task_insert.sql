@@ -15,13 +15,6 @@ INSERT INTO pay_method VALUES
 (3,'現金支払'),
 (4,'ポイント支払'),
 (5,'Edy支払');
-/*
-INSERT INTO employee VALUES
-(1,'001','田中'),
-(1,'002','中山'),
-(1,'003','山城'),
-(2,'001','城田');
-*/
 
 INSERT INTO receipt VALUES
 (1,1,'2022/04/01','19:00:00',1,'001'),
