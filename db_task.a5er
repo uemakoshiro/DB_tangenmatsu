@@ -1,0 +1,276 @@
+﻿# A5:ER FORMAT:16
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright © 2007 m.matsubara
+# A5:SQL Mk-2 Version 2.17.1 Copyright © 1997 - 2022 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=
+Author=
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",2,"A3Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=2
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=6
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+UpperCaseKeyword=0
+ShowTag=1
+ShowCommonAttributes=0
+BugFixEntityWidth=1
+
+[Entity]
+PName=goods
+LName=goods
+Comment=
+TableOption=
+Page=Main
+Left=1200
+Top=50
+Field="商品id","商品id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="商品名","商品名","character varying(50)","NOT NULL",,"","",$FFFFFFFF,""
+Field="単価","単価","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="値引率","値引率","integer",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",1200,50
+ZOrder=-1
+
+[Entity]
+PName=pay
+LName=pay
+Comment=
+TableOption=
+Page=Main
+Left=400
+Top=350
+Field="id","id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="伝票番号","伝票番号","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="支払方法１","支払方法１","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="支払方法２","支払方法２","integer",,,"","",$FFFFFFFF,""
+Field="受領額","受領額","integer",,,"","",$FFFFFFFF,""
+Field="お釣り","お釣り","integer",,,"","",$FFFFFFFF,""
+Field="使用ポイント","使用ポイント","integer",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",400,350
+ZOrder=-2
+
+[Entity]
+PName=pay_method
+LName=pay_method
+Comment=
+TableOption=
+Page=Main
+Left=400
+Top=700
+Field="id","id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="支払方法","支払方法","character varying(50)","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",400,700,154,51
+ZOrder=-3
+
+[Entity]
+PName=receipt
+LName=receipt
+Comment=
+TableOption=
+Page=Main
+Left=850
+Top=350
+Field="伝票番号","伝票番号","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="店舗id","店舗id","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="日付","日付","date","NOT NULL",,"","",$FFFFFFFF,""
+Field="時間","時間","time without time zone","NOT NULL",,"","",$FFFFFFFF,""
+Field="レジ番号","レジ番号","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="責任者id","責任者id","character varying(50)","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",850,350
+ZOrder=-4
+
+[Entity]
+PName=sales
+LName=sales
+Comment=
+TableOption=
+Page=Main
+Left=1200
+Top=350
+Field="id","id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="伝票番号","伝票番号","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="商品id","商品id","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="個数","個数","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="消費税率","消費税率","integer","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",1200,350
+ZOrder=-5
+
+[Entity]
+PName=store
+LName=store
+Comment=
+TableOption=
+Page=Main
+Left=850
+Top=700
+Field="店舗id","店舗id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="店舗名","店舗名","character varying(50)","NOT NULL",,"","",$FFFFFFFF,""
+Field="住所","住所","character varying(50)","NOT NULL",,"","",$FFFFFFFF,""
+Field="電話番号","電話番号","character varying(20)","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+Position="Main",850,700
+ZOrder=-6
+
+[Relation]
+Entity1=store
+Entity2=receipt
+RelationType1=1
+RelationType2=3
+Fields1=店舗id
+Fields2=店舗id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,40,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=4
+TermPos1=R
+TermPos2=R
+ZOrder=-10
+
+[Relation]
+Entity1=receipt
+Entity2=sales
+RelationType1=1
+RelationType2=3
+Fields1=伝票番号
+Fields2=伝票番号
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,128,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=13
+TermPos1=R
+TermPos2=R
+ZOrder=-11
+
+[Relation]
+Entity1=goods
+Entity2=sales
+RelationType1=1
+RelationType2=3
+Fields1=商品id
+Fields2=商品id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,94,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=9
+TermPos1=R
+TermPos2=R
+ZOrder=-12
+
+[Relation]
+Entity1=receipt
+Entity2=pay
+RelationType1=1
+RelationType2=3
+Fields1=伝票番号
+Fields2=伝票番号
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,597,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=60
+TermPos1=R
+TermPos2=R
+ZOrder=-7
+
+[Relation]
+Entity1=pay_method
+Entity2=pay
+RelationType1=1
+RelationType2=3
+Fields1=id
+Fields2=支払方法１
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,264,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=26
+TermPos1=R
+TermPos2=R
+ZOrder=-8
+
+[Relation]
+Entity1=pay_method
+Entity2=pay
+RelationType1=1
+RelationType2=3
+Fields1=id
+Fields2=支払方法２
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,264,R,R,""
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=26
+TermPos1=R
+TermPos2=R
+ZOrder=-9
